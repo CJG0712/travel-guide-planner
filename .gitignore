@@ -1,0 +1,17 @@
+# Local generated outputs and scratch state
+*.pdf
+*.docx
+previews/
+tmp/
+dist/
+build/
+__pycache__/
+*.py[cod]
+
+# Local secrets and OS metadata
+.env
+.env.*
+*.key
+*.pem
+.DS_Store
+Thumbs.db

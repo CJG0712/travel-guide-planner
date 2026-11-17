@@ -1,0 +1,12 @@
+name: Feature or City Template Suggestion
+description: Suggest new visual layouts, city lookbook examples, or export improvements
+title: "[Suggestion]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: 改进建议 / Proposal
+      description: 你希望新增的城市模板、交通拓扑图元素或导出能力。
+    validations:
+      required: true

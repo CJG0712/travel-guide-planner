@@ -1,0 +1,17 @@
+name: Bug Report
+description: Report a broken template, script error, or layout issue in travel-guide-planner
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述 / What happened
+      description: 描述触发问题的城市、输入约束或导出步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境 / Environment
+      description: 使用的 Agent 工具（如 Antigravity / Claude Code / Codex / Cursor）、操作系统与 Python 版本。

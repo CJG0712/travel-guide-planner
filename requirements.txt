@@ -1,0 +1,15 @@
+# Optional runtime & validation dependencies for travel-guide-planner
+# PDF export itself uses Microsoft Edge / Chrome Headless (no pip install needed).
+# Install optional tools with:
+#   pip install -r requirements.txt
+
+# YAML frontmatter & CI skill validation
+PyYAML>=6.0
+
+# PDF metrics check (page count, non-whitespace chars) and per-page PNG rendering QA
+# License notice: PyMuPDF is licensed under AGPL-3.0 (commercial license via Artifex).
+# Skip if you only generate Markdown guides or inspect PDFs manually.
+PyMuPDF>=1.23.0
+
+# Optional Word (.docx) itinerary export
+python-docx>=1.1.0

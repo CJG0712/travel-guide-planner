@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>城市 2 天 1 晚视觉图鉴路书模板（4 页少字版）</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm 11mm 10mm 11mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    color: #1F2429;
+    background: #FFFFFF;
+    font-size: 9pt;
+    line-height: 1.42;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .serif { font-family: "STZhongsong", "SimSun", "Noto Serif SC", serif; }
+  .page { page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #1F2429;
+    padding-bottom: 5px;
+    margin-bottom: 11px;
+  }
+  .top-kicker { font-size: 8pt; font-weight: 800; letter-spacing: 1.5px; color: #B43B2A; }
+  .top-bar h2 { font-size: 15.5pt; font-weight: 800; color: #181C20; }
+  .top-num { font-size: 8pt; color: #6B727A; font-weight: 700; }
+
+  /* Page 1 */
+  .hero {
+    position: relative;
+    height: 108mm;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 11px;
+    background: linear-gradient(135deg, #245C68 0%, #3E6B5C 52%, #C97A40 100%);
+  }
+  .hero-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(16,20,24,0.08) 25%, rgba(16,20,24,0.82) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 24px;
+    color: #FFFFFF;
+  }
+  .hero-tag {
+    display: inline-block;
+    width: fit-content;
+    background: #B43B2A;
+    color: #FFFFFF;
+    font-size: 8pt;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .hero h1 { font-size: 25pt; font-weight: 800; margin-bottom: 6px; }
+  .hero-sub { font-size: 10pt; color: #EAE6DC; }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 11px;
+  }
+  .kpi {
+    background: #FAF8F4;
+    border: 1px solid #E2DDD2;
+    border-top: 3px solid #245C68;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .kpi-l { font-size: 7.5pt; font-weight: 700; color: #6B727A; }
+  .kpi-v { font-size: 11pt; font-weight: 800; color: #181C20; margin-top: 2px; }
+
+  .alert-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 11px;
+  }
+  .alert-box {
+    background: #FDF7F5;
+    border: 1px solid #EBD4CD;
+    border-left: 4px solid #B43B2A;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .alert-box b { display: block; font-size: 8.5pt; color: #8A2A1C; margin-bottom: 2px; }
+  .alert-box span { font-size: 8pt; color: #3D4247; line-height: 1.38; display: block; }
+
+  .split-p1 { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
+  .panel {
+    border: 1px solid #E2DDD2;
+    border-radius: 8px;
+    padding: 11px 13px;
+    background: #FFFFFF;
+  }
+  .panel-t {
+    font-size: 10pt;
+    font-weight: 800;
+    color: #181C20;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .b-item { margin-bottom: 7px; }
+  .b-head { display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 700; margin-bottom: 3px; }
+  .b-track { height: 7px; background: #EFECE5; border-radius: 4px; overflow: hidden; }
+  .b-fill { height: 100%; border-radius: 4px; }
+
+  /* Page 2 */
+  .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .spot-card { border: 1px solid #E2DDD2; border-radius: 8px; overflow: hidden; break-inside: avoid; }
+  .spot-img {
+    height: 62mm;
+    background: linear-gradient(135deg, #DDE6E8, #C9D8D3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #245C68;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .spot-body { padding: 8px 10px; }
+  .spot-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+  .spot-head h3 { font-size: 10.5pt; font-weight: 800; }
+  .pill { font-size: 7.8pt; font-weight: 700; background: #EEF5F6; color: #245C68; padding: 2px 7px; border-radius: 4px; }
+  .spot-desc { font-size: 8pt; color: #4A5056; }
+
+  .grid-1x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mini-img {
+    height: 44mm;
+    background: linear-gradient(135deg, #F4EAE2, #E6D2C2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8A4A1C;
+    font-weight: 700;
+    font-size: 9pt;
+  }
+
+  /* Page 3 */
+  .svg-card {
+    background: #FAF8F4;
+    border: 1px solid #E2DDD2;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .svg-leg {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 7.8pt;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #3D4247;
+  }
+  .dot-l { display: inline-block; width: 14px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+  .day-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+  .day-box { border: 1px solid #E2DDD2; border-radius: 8px; overflow: hidden; }
+  .day-head { padding: 8px 12px; color: #FFFFFF; font-weight: 800; font-size: 10pt; }
+  .slot { display: flex; gap: 8px; padding: 8px 11px; border-bottom: 1px dashed #E5E0D5; }
+  .slot:last-child { border-bottom: none; }
+  .time-col { width: 46px; font-size: 7.8pt; font-weight: 800; color: #245C68; flex-shrink: 0; }
+  .slot-t { font-size: 9pt; font-weight: 800; margin-bottom: 3px; }
+  .tag-row span { display: inline-block; font-size: 7.4pt; padding: 1px 6px; border-radius: 3px; background: #F0ECE3; margin-right: 4px; }
+  .planb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .planb-box { background: #F5F7F8; border: 1px solid #DCE3E6; border-radius: 6px; padding: 8px 10px; font-size: 8pt; }
+
+  /* Page 4 */
+  .food-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .food-ban { border: 1px solid #E2DDD2; border-radius: 8px; overflow: hidden; }
+  .food-ban-img {
+    height: 54mm;
+    background: linear-gradient(135deg, #F6E6DC, #EAD0B8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #8A2A1C;
+  }
+  .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 11px; }
+  .food-card { border: 1px solid #E2DDD2; border-radius: 7px; padding: 9px 10px; background: #FAF8F4; }
+  .food-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .food-price { background: #B43B2A; color: #FFFFFF; font-size: 7.8pt; font-weight: 800; padding: 1px 7px; border-radius: 4px; }
+  .check-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+  .check-box { border: 1px solid #E2DDD2; border-radius: 6px; padding: 8px 9px; font-size: 7.8pt; }
+  .footer-note { text-align: center; font-size: 8.5pt; color: #6B727A; border-top: 1px solid #E2DDD2; padding-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="hero">
+    <svg class="hero-art" viewBox="0 0 800 420" preserveAspectRatio="none">
+      <circle cx="650" cy="95" r="55" fill="rgba(255,220,160,0.35)" />
+      <path d="M0 320 Q 180 220 420 295 T 800 250 L 800 420 L 0 420 Z" fill="rgba(18,32,38,0.45)" />
+      <text x="50%" y="36%" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="16" font-weight="700">[ 替换为城市代表风貌实景横图 ]</text>
+    </svg>
+    <div class="hero-scrim">
+      <div class="hero-tag">[出发城市]出发 · [日期区间]</div>
+      <h1 class="serif">[目标城市] X 天 X 晚 · 视觉图鉴路书</h1>
+      <div class="hero-sub">[总预算] · [核心住宿商圈] · [出行方式] · [口味与节奏标签]</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-l">气候穿搭</div><div class="kpi-v">XX–XX℃</div></div>
+    <div class="kpi"><div class="kpi-l">预算实测</div><div class="kpi-v">X,XXX 元</div></div>
+    <div class="kpi"><div class="kpi-l">身份折扣</div><div class="kpi-v">学生/优待政策</div></div>
+    <div class="kpi"><div class="kpi-l">主交通网</div><div class="kpi-v">地铁 X/X 号线</div></div>
+  </div>
+
+  <div class="alert-strip">
+    <div class="alert-box"><b>1. 提前预约通道</b><span>标注官方小程序/公众号及提前放票天数与闭馆日。</span></div>
+    <div class="alert-box"><b>2. 热门场馆兜底</b><span>标注约满直通方案或同区免约替代场馆。</span></div>
+    <div class="alert-box"><b>3. 抵离时间基准</b><span>明确首日抵达与末日离开的假设或实票时刻。</span></div>
+  </div>
+
+  <div class="split-p1">
+    <div class="panel">
+      <div class="panel-t"><span>总预算结构（含往返大交通）</span><span>合计 X,XXX 元</span></div>
+      <div class="b-item"><div class="b-head"><span>往返大交通</span><span>XXX–XXX 元</span></div><div class="b-track"><div class="b-fill" style="width:45%;background:#245C68;"></div></div></div>
+      <div class="b-item"><div class="b-head"><span>住宿费用（核心商圈）</span><span>XXX–XXX 元</span></div><div class="b-track"><div class="b-fill" style="width:20%;background:#3E6B5C;"></div></div></div>
+      <div class="b-item"><div class="b-head"><span>特色正餐 + 小吃夜市</span><span>XXX–XXX 元</span></div><div class="b-track"><div class="b-fill" style="width:18%;background:#C97A40;"></div></div></div>
+      <div class="b-item"><div class="b-head"><span>门票 + 索道/区间车</span><span>XX–XXX 元</span></div><div class="b-track"><div class="b-fill" style="width:10%;background:#B43B2A;"></div></div></div>
+      <div class="b-item"><div class="b-head"><span>市内交通 + 应急金</span><span>XXX 元</span></div><div class="b-track"><div class="b-fill" style="width:7%;background:#7A848E;"></div></div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-t"><span>逐日天气穿衣与优惠票速算</span><span>轻装出行</span></div>
+      <p style="font-size:8.2pt;margin-bottom:8px;">Day 1：天气与温差｜Day 2：天气与温差。按温差配置三层穿搭与平底运动鞋。</p>
+      <p style="font-size:8.2pt;color:#B43B2A;font-weight:700;">持有效证件票价：场馆 A 半价 XX 元 · 区间车 XX 元 · 免费展馆 0 元。</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="top-bar">
+    <div><div class="top-kicker">VISUAL HIGHLIGHTS · MUST-SEE SPOTS</div><h2 class="serif">四大核心地标与三大街区视觉图鉴</h2></div>
+    <div class="top-num">2 / 4</div>
+  </div>
+  <div class="grid-2x2">
+    <div class="spot-card"><div class="spot-img">[地标 A 高清实拍图]</div><div class="spot-body"><div class="spot-head"><h3>地标 A</h3><span class="pill">门票 XX 元</span></div><p class="spot-desc">地铁出口 + 最佳拍照光线 + 省力观光动线。</p></div></div>
+    <div class="spot-card"><div class="spot-img">[地标 B 高清实拍图]</div><div class="spot-body"><div class="spot-head"><h3>地标 B</h3><span class="pill">半价 XX 元</span></div><p class="spot-desc">不爬山路线（索道/车上、缓步下）与预约提示。</p></div></div>
+    <div class="spot-card"><div class="spot-img">[文博场馆 C 高清图]</div><div class="spot-body"><div class="spot-head"><h3>文博场馆 C</h3><span class="pill">0 元 · 需预约</span></div><p class="spot-desc">镇馆看点 + 闭馆日提醒 + 临展直通备选。</p></div></div>
+    <div class="spot-card"><div class="spot-img">[夜色地标 D 高清图]</div><div class="spot-body"><div class="spot-head"><h3>夜色地标 D</h3><span class="pill">外景 0 元</span></div><p class="spot-desc">亮灯时段 + 免费机位 + 顺路对接夜市方向。</p></div></div>
+  </div>
+  <div class="grid-1x3">
+    <div class="spot-card"><div class="mini-img">[住宿锚点片区]</div><div class="spot-body"><div class="spot-head"><h3>核心住宿圈</h3><span class="pill">XXX 元/晚</span></div><p class="spot-desc">多线换乘枢纽，直达站点耗时短。</p></div></div>
+    <div class="spot-card"><div class="mini-img">[顺路文艺老街]</div><div class="spot-body"><div class="spot-head"><h3>历史街区 A</h3><span class="pill">免费漫拍</span></div><p class="spot-desc">街景氛围与顺路正餐名店步行距离。</p></div></div>
+    <div class="spot-card"><div class="mini-img">[烟火小吃街区]</div><div class="spot-body"><div class="spot-head"><h3>小吃步行街 B</h3><span class="pill">全步行</span></div><p class="spot-desc">集齐茶饮伴手礼与夜市接驳动线。</p></div></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="top-bar">
+    <div><div class="top-kicker">ROUTE &amp; TIMELINE · ZERO BACKTRACKING</div><h2 class="serif">无折返空间路线图与极简双栏时间轴</h2></div>
+    <div class="top-num">3 / 4</div>
+  </div>
+  <div class="svg-card">
+    <div class="svg-leg">
+      <span><i class="dot-l" style="background:#245C68"></i>主干地铁线 A：站点1 — 住宿枢纽 — 景区1</span>
+      <span><i class="dot-l" style="background:#B43B2A"></i>换乘线 B：景区2出口</span>
+      <span><i class="dot-l" style="background:#C98A2C"></i>文博线 C：博物馆站</span>
+      <span><i class="dot-l" style="background:#5E6A75"></i>夜宵线 D：夜市商圈</span>
+    </div>
+    <svg viewBox="0 0 740 135" width="100%" height="120">
+      <line x1="60" y1="68" x2="680" y2="68" stroke="#245C68" stroke-width="5" stroke-linecap="round" />
+      <circle cx="90" cy="68" r="8" fill="#FFFFFF" stroke="#245C68" stroke-width="4" />
+      <circle cx="290" cy="68" r="9" fill="#B43B2A" stroke="#FFFFFF" stroke-width="3" />
+      <circle cx="490" cy="68" r="8" fill="#FFFFFF" stroke="#245C68" stroke-width="4" />
+      <circle cx="650" cy="68" r="8" fill="#181C20" />
+      <text x="90" y="96" text-anchor="middle" font-size="11" font-weight="700">景区集群 1</text>
+      <text x="290" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="#B43B2A">住宿中心（换乘枢纽）</text>
+      <text x="490" y="96" text-anchor="middle" font-size="11" font-weight="700">文博/老街区</text>
+      <text x="650" y="96" text-anchor="middle" font-size="11" font-weight="700">机场 / 高铁站</text>
+    </svg>
+  </div>
+  <div class="day-cols">
+    <div class="day-box">
+      <div class="day-head" style="background:#245C68;">DAY 1 · 核心山水/城景动线</div>
+      <div class="slot"><div class="time-col">10:30<br>11:45</div><div><div class="slot-t">抵城寄存行李 + 当地招牌早餐</div><div class="tag-row"><span>地铁 XX 分</span><span>车 X 元 · 餐 XX 元</span><span>轻装出发</span></div></div></div>
+      <div class="slot"><div class="time-col">12:00<br>17:30</div><div><div class="slot-t">核心地标顺路串联（索道/车不爬山）</div><div class="tag-row"><span>顺路无折返</span><span>门票+车 XX 元</span><span>学生优惠</span></div></div></div>
+      <div class="slot"><div class="time-col">18:15<br>22:00</div><div><div class="slot-t">地标亮灯 + 当地夜市小吃</div><div class="tag-row"><span>打车 XX 元</span><span>夜市 XX–XX 元</span><span>微辣提示</span></div></div></div>
+    </div>
+    <div class="day-box">
+      <div class="day-head" style="background:#B43B2A;">DAY 2 · 室内文博 + 老街 + 返程</div>
+      <div class="slot"><div class="time-col">09:00<br>12:00</div><div><div class="slot-t">博物馆主馆或替补馆（室内防晒防雨）</div><div class="tag-row"><span>地铁 XX 分</span><span>展 0 元</span><span>重点特展</span></div></div></div>
+      <div class="slot"><div class="time-col">12:30<br>16:30</div><div><div class="slot-t">老街慢拍 + 口碑正餐 + 伴手礼茶饮</div><div class="tag-row"><span>步行串联</span><span>正餐 XX–XX 元</span><span>提前取号</span></div></div></div>
+      <div class="slot"><div class="time-col">17:00<br>19:00</div><div><div class="slot-t">取行李乘地铁赴站返程</div><div class="tag-row"><span>地铁直达</span><span>留足进站缓冲</span><span>核对证件</span></div></div></div>
+    </div>
+  </div>
+  <div class="planb-row">
+    <div class="planb-box"><b>雨天 / 大风备选：</b>放弃索道/露天项目，切入同片区室内书院/展厅/商圈。</div>
+    <div class="planb-box"><b>热门场馆约满备选：</b>官方付费临展直通入馆，或切入周边免约/易约文化馆。</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="top-bar">
+    <div><div class="top-kicker">LOCAL FLAVORS &amp; CHECKLIST</div><h2 class="serif">当地特色美食价格图鉴与行前 4 项速查</h2></div>
+    <div class="top-num">4 / 4</div>
+  </div>
+  <div class="food-banners">
+    <div class="food-ban"><div class="food-ban-img">[当地粉面 / 招牌正餐高清横幅图]</div><div class="spot-body"><b>清晨风味 · 本地口碑正餐</b><p class="spot-desc">XX–XX 元/人 · 注明原汤不辣或外地微辣点单口诀。</p></div></div>
+    <div class="food-ban"><div class="food-ban-img">[街头小吃 / 茶饮夜市高清横幅图]</div><div class="spot-body"><b>街头小吃 · 本土茶饮 · 夜市</b><p class="spot-desc">XX–XX 元/份 · 嵌入顺路街区，避开主街高价坑。</p></div></div>
+  </div>
+  <div class="food-grid">
+    <div class="food-card"><div class="food-top"><b>正餐老店 A</b><span class="food-price">45–75元</span></div><p class="spot-desc">招牌菜 1 · 招牌菜 2 · 线上提前取号 + 微辣建议。</p></div>
+    <div class="food-card"><div class="food-top"><b>居民区餐馆 B</b><span class="food-price">55–80元</span></div><p class="spot-desc">不辣必点菜 · 本地家常菜 · 紧邻历史街区。</p></div>
+    <div class="food-card"><div class="food-top"><b>早点粉面店 C</b><span class="food-price">12–25元</span></div><p class="spot-desc">传统手工粉面 · 原汤自助加辣 · 地铁沿线顺路。</p></div>
+    <div class="food-card"><div class="food-top"><b>经典小吃组合 D</b><span class="food-price">10–18元</span></div><p class="spot-desc">街头现做热食 2 款 · 注意趁热防烫与微辣可选。</p></div>
+    <div class="food-card"><div class="food-top"><b>本土特色茶饮 E</b><span class="food-price">15–22元</span></div><p class="spot-desc">推荐 2–3 款招牌茶底 · 小程序点单免站队等待。</p></div>
+    <div class="food-card"><div class="food-top"><b>夜宵街区摊位 F</b><span class="food-price">40–70元</span></div><p class="spot-desc">炭烤/卤味/冰甜品 · 营业至深夜 · 避开溢价摊。</p></div>
+  </div>
+  <div class="check-grid">
+    <div class="check-box"><b>住宿锚点策略</b><br>多线地铁换乘口步行 5 分钟内，兼顾夜宵便利与返程直达。</div>
+    <div class="check-box"><b>必带原件清单</b><br>身份证 + 学生/优惠证原件；充电宝；折叠伞；平底鞋。</div>
+    <div class="check-box"><b>乘车与离线码</b><br>提前开通当地地铁乘车码；订单与预约码截屏存相册。</div>
+    <div class="check-box"><b>防坑与热线</b><br>拒坐车站黑车与黄牛代约；主街勿购高价散装银器特产；12345。</div>
+  </div>
+  <div class="footer-note">本模板为 travel-guide-planner 4 页少字图鉴标准骨架，实作时替换为目标城市实景图与核验票价即可一键导出 PDF。</div>
+</div>
+
+</body>
+</html>
