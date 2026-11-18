@@ -1,6 +1,6 @@
 interface:
-  display_name: "图文旅游攻略规划师"
-  short_description: "先问约束、无折返排程、美食配图明码标价，支持直出少字画册式 PDF 路书"
-  default_prompt: "Use $travel-guide-planner to collect trip constraints without assuming departure city, check route/budget conflicts, and output a concise, image-first travel guide with local food prices and optional A4 lookbook PDF export."
+  display_name: "手账图文旅游攻略规划师"
+  short_description: "通用不设预设城市；先问约束、网图实拍优先+真实生图补位、输出手账风4页清晰图文PDF路书"
+  default_prompt: "Use $travel-guide-planner to collect trip constraints without assuming any origin or destination city, verify prices and schedules online, prioritize clean real web photos (falling back to reality-grounded generation only when needed), and build a handcrafted, readable 4-page A4 travel PDF."
 policy:
   allow_implicit_invocation: true
