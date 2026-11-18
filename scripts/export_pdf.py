@@ -51,23 +51,30 @@ def find_browser(explicit_path: str | None = None) -> str:
 
 
 def render_pdf(browser_exe: str, html_path: Path, out_pdf: Path) -> None:
-    """Print HTML file to PDF via headless browser."""
+    """Print HTML file to PDF via isolated headless browser session."""
+    import tempfile
+
     out_pdf.parent.mkdir(parents=True, exist_ok=True)
     html_uri = html_path.resolve().as_uri()
-    cmd = [
-        browser_exe,
-        "--headless",
-        "--disable-gpu",
-        "--no-pdf-header-footer",
-        "--print-to-pdf-no-header",
-        f"--print-to-pdf={out_pdf.resolve()}",
-        html_uri,
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, check=False)
-    if result.returncode != 0 or not out_pdf.is_file():
-        raise RuntimeError(
-            f"Headless PDF export failed (code {result.returncode}): {result.stderr.strip()}"
-        )
+    with tempfile.TemporaryDirectory(prefix="tgp_edge_") as ud_dir:
+        tmp_pdf = Path(ud_dir) / "output.pdf"
+        cmd = [
+            browser_exe,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-first-run",
+            f"--user-data-dir={ud_dir}",
+            "--no-pdf-header-footer",
+            "--print-to-pdf-no-header",
+            f"--print-to-pdf={tmp_pdf}",
+            html_uri,
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        if result.returncode != 0 or not tmp_pdf.is_file():
+            raise RuntimeError(
+                f"Headless PDF export failed (code {result.returncode}): {result.stderr.strip()}"
+            )
+        shutil.copy2(tmp_pdf, out_pdf)
 
 
 def inspect_and_export_previews(out_pdf: Path, preview_dir: Path | None, dpi: int) -> None:
